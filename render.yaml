@@ -2,16 +2,14 @@ services:
   - type: web
     name: sales-prediction-backend
     env: python
-    region: singapore  # Gần Vietnam nhất
+    region: singapore
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app --bind 0.0.0.0
-:$PORT
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
     envVars:
       - key: PYTHON_VERSION
-        value: "3.12"  # Render free tier hỗ trợ 3.9-3.12
+        value: "3.12"
       - key: AZURE_ML_ENDPOINT
         value: https://sales-sa-ml-gdjrr.southeastasia.inference.ml.azure.com/score
-
       - key: AZURE_ML_API_KEY
-        sync: false  # Sẽ set manual trên dashboard
+        sync: false
